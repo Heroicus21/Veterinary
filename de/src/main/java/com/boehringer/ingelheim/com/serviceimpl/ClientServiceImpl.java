@@ -15,6 +15,7 @@ import com.boehringer.ingelhein.com.dto.ClientDTO;
 import com.boehringer.ingelhein.com.dto.VeterinaryDTO;
 import java.util.Collection;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 
@@ -110,6 +111,19 @@ public class ClientServiceImpl implements ClientService{
             e.printStackTrace();
         }                
         throw new UnsupportedOperationException("Ocurrio un error."); 
+    }
+
+    @Override
+    public Collection<ClientDTO> findByName(String source, Pageable pageRequest) throws Exception {
+        
+        try {
+            Collection<Client> result=repository.findByVeterinariaName(source, pageRequest);
+            return mapper.toDTOS(result);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

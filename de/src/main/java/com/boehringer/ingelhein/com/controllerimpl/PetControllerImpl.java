@@ -14,6 +14,7 @@ import java.util.Collection;
 import javax.websocket.server.PathParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Required;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -72,6 +73,17 @@ public class PetControllerImpl implements PetController{
     public Collection<PetDTO> findByClient(@PathVariable(required =true)ClientDTO source) throws Exception {
         return service.findByClient(source);
         
+    }
+
+    @Override
+    @GetMapping(value="/{source}/{pageable}")
+    public Collection<PetDTO> findByClientName(@PathVariable(required =true)String source, @PathVariable(required =true)Pageable pageable) throws Exception {
+        try {
+            return service.findByClientName(source, pageable);      
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+          throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

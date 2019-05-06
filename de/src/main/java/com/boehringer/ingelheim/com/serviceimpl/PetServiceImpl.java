@@ -16,6 +16,7 @@ import com.boehringer.ingelhein.com.dto.ClientDTO;
 import com.boehringer.ingelhein.com.dto.PetDTO;
 import java.util.Collection;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 /**
@@ -104,6 +105,17 @@ public class PetServiceImpl implements PetService{
             return mapper.toDTOS(result);
         } catch (Exception e) {
             e.printStackTrace();
+        }
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Collection<PetDTO> findByClientName(String source, Pageable pageRequest) throws Exception {
+        
+        try {
+            Collection<Pet> result=repository.findByClientName(source, pageRequest);
+            return mapper.toDTOS(result);
+        } catch (Exception e) {
         }
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }

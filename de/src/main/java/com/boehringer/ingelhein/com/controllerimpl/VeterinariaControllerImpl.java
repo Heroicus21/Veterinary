@@ -10,8 +10,10 @@ import com.boehringer.ingelhein.com.controller.VeterinariaController;
 import com.boehringer.ingelhein.com.dto.VeterinaryDTO;
 import java.util.Collection;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -51,6 +53,17 @@ public class VeterinariaControllerImpl implements VeterinariaController{
     @DeleteMapping(value="/delete")
     public void delete(VeterinaryDTO source) throws Exception {
         service.delete(source);        
+    }
+
+    @Override
+    @GetMapping("/{name}/{pageable}")
+    public Collection<VeterinaryDTO> findByName(@PathVariable(required =true)String name, @PathVariable(required =true)Pageable pageable) throws Exception {
+        try {
+           return service.findByName(name, pageable);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     

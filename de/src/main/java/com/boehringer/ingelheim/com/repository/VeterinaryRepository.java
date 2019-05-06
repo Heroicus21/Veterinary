@@ -6,6 +6,9 @@
 package com.boehringer.ingelheim.com.repository;
 
 import com.boehringer.ingelheim.com.model.Veterinary;
+
+import java.util.Collection;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Component;
 
@@ -15,5 +18,7 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public interface VeterinaryRepository extends JpaRepository<Veterinary, Long>{
+    
+    Collection<Veterinary> findByName(String name, Pageable pageable);
     
 }

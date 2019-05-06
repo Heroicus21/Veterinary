@@ -12,6 +12,7 @@ import com.boehringer.ingelhein.com.dto.ClientDTO;
 import com.boehringer.ingelhein.com.dto.VeterinaryDTO;
 import java.util.Collection;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -69,6 +70,18 @@ public class ClientControllerImpl implements ClientController{
     @GetMapping(value="/{veterinary}")
     public Collection<ClientDTO> findByVeterinary(@PathVariable(required = true)VeterinaryDTO veterinary ) throws Exception {
         return service.findByVeterinary(veterinary);        
+    }
+
+    @Override
+    @GetMapping(value = "/{source}/{pageable}")
+    public Collection<ClientDTO> findByVeterinaryName(@PathVariable(required =true)String source,@PathVariable(required =true) Pageable pageable) throws Exception {        
+        
+        try {
+            return service.findByName(source, pageable); 
+        } catch (Exception e) {
+            e.printStackTrace();
+        }            
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }
