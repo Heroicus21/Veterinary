@@ -7,6 +7,7 @@ package com.boehringer.ingelheim.com.service;
 
 import com.boehringer.ingelhein.com.dto.VeterinaryDTO;
 import java.util.Collection;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 
 
@@ -19,6 +20,6 @@ public interface VeterinaryService {
     public VeterinaryDTO edit(VeterinaryDTO source) throws Exception;    
     public Collection<VeterinaryDTO> list() throws Exception;    
     public void delete(VeterinaryDTO source) throws Exception;
-    public Collection<VeterinaryDTO> findByName(String name,Pageable pageable) throws Exception;
+    public Collection<VeterinaryDTO> findByName(String name,PageRequest pageable) throws Exception;
 
 }

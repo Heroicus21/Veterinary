@@ -14,6 +14,7 @@ import java.util.Collection;
 import javax.websocket.server.PathParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Required;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -77,7 +78,7 @@ public class PetControllerImpl implements PetController{
 
     @Override
     @GetMapping(value="/{source}/{pageable}")
-    public Collection<PetDTO> findByClientName(@PathVariable(required =true)String source, @PathVariable(required =true)Pageable pageable) throws Exception {
+    public Collection<PetDTO> findByClientName(@PathVariable(required =true)String source, @PathVariable(required =true)PageRequest pageable) throws Exception {
         try {
             return service.findByClientName(source, pageable);      
         } catch (Exception e) {

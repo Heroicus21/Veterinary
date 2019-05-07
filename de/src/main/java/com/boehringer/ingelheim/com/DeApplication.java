@@ -16,13 +16,15 @@ public class DeApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(DeApplication.class, args);
 	}
+        
+        
 @Configuration
-    @EnableWebMvc
-    public class WebConfig extends WebMvcConfigurerAdapter {
-        @Override
-        public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/**").allowedMethods("GET", "POST", "PUT", "DELETE").allowedOrigins("*")
-                                .allowedHeaders("*");
-        }
-    }
+@EnableWebMvc
+public class WebConfig extends WebMvcConfigurerAdapter {
+                @Override
+                public void addCorsMappings(CorsRegistry registry) {
+                    registry.addMapping("/**").allowedMethods("GET", "POST", "PUT", "DELETE").allowedOrigins("*")
+                    .allowedHeaders("*");
+                }
+            }
 }

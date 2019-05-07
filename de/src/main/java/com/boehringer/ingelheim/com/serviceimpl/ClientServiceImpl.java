@@ -13,8 +13,10 @@ import com.boehringer.ingelheim.com.repository.VeterinaryRepository;
 import com.boehringer.ingelheim.com.service.ClientService;
 import com.boehringer.ingelhein.com.dto.ClientDTO;
 import com.boehringer.ingelhein.com.dto.VeterinaryDTO;
+import java.util.ArrayList;
 import java.util.Collection;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -114,10 +116,11 @@ public class ClientServiceImpl implements ClientService{
     }
 
     @Override
-    public Collection<ClientDTO> findByName(String source, Pageable pageRequest) throws Exception {
+    public Collection<ClientDTO> findByName(String source, PageRequest pageRequest) throws Exception {
         
         try {
             Collection<Client> result=repository.findByVeterinariaName(source, pageRequest);
+            //Collection<Client> result= new ArrayList<Client>();
             return mapper.toDTOS(result);
         } catch (Exception e) {
             e.printStackTrace();

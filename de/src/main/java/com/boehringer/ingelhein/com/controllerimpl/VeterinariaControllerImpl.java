@@ -10,7 +10,7 @@ import com.boehringer.ingelhein.com.controller.VeterinariaController;
 import com.boehringer.ingelhein.com.dto.VeterinaryDTO;
 import java.util.Collection;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -57,7 +57,7 @@ public class VeterinariaControllerImpl implements VeterinariaController{
 
     @Override
     @GetMapping("/{name}/{pageable}")
-    public Collection<VeterinaryDTO> findByName(@PathVariable(required =true)String name, @PathVariable(required =true)Pageable pageable) throws Exception {
+    public Collection<VeterinaryDTO> findByName(@PathVariable(required =true)String name, @PathVariable(required =true)PageRequest pageable) throws Exception {
         try {
            return service.findByName(name, pageable);
         } catch (Exception e) {

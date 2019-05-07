@@ -14,8 +14,10 @@ import com.boehringer.ingelheim.com.repository.PetRepository;
 import com.boehringer.ingelheim.com.service.PetService;
 import com.boehringer.ingelhein.com.dto.ClientDTO;
 import com.boehringer.ingelhein.com.dto.PetDTO;
+import java.util.ArrayList;
 import java.util.Collection;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -110,10 +112,11 @@ public class PetServiceImpl implements PetService{
     }
 
     @Override
-    public Collection<PetDTO> findByClientName(String source, Pageable pageRequest) throws Exception {
+    public Collection<PetDTO> findByClientName(String source, PageRequest pageRequest) throws Exception {
         
         try {
             Collection<Pet> result=repository.findByClientName(source, pageRequest);
+//            Collection<Pet> result= new ArrayList<Pet>();
             return mapper.toDTOS(result);
         } catch (Exception e) {
         }

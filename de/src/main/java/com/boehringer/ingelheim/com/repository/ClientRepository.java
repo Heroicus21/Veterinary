@@ -9,6 +9,7 @@ import com.boehringer.ingelheim.com.model.Client;
 import com.boehringer.ingelheim.com.model.Veterinary;
 
 import java.util.Collection;
+import java.util.List;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Component;
@@ -20,5 +21,5 @@ import org.springframework.stereotype.Component;
 @Component
 public interface ClientRepository extends JpaRepository<Client, Long>{
     Collection<Client> findByVeterinaria(Veterinary veterinary);
-    Collection<Client> findByVeterinariaName(String name,Pageable pageable);
+    List<Client> findByVeterinariaName(String name,Pageable pageable);
 }

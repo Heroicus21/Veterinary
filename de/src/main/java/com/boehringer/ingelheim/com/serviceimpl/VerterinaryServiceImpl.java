@@ -12,6 +12,7 @@ import com.boehringer.ingelheim.com.service.VeterinaryService;
 import com.boehringer.ingelhein.com.dto.VeterinaryDTO;
 import java.util.Collection;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -84,7 +85,7 @@ public class VerterinaryServiceImpl implements VeterinaryService{
     }
 
     @Override
-    public Collection<VeterinaryDTO> findByName(String name, Pageable pageable) throws Exception {
+    public Collection<VeterinaryDTO> findByName(String name, PageRequest pageable) throws Exception {
         try {
             Collection<Veterinary> result=repository.findByName(name, pageable);
             return mapper.toDTOS(result);

@@ -12,6 +12,7 @@ import com.boehringer.ingelhein.com.dto.ClientDTO;
 import com.boehringer.ingelhein.com.dto.VeterinaryDTO;
 import java.util.Collection;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,7 +28,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 
 @RestController
-@RequestMapping("/clinic/client")
+@RequestMapping("/client")
 public class ClientControllerImpl implements ClientController{
 
     @Autowired
@@ -74,7 +75,7 @@ public class ClientControllerImpl implements ClientController{
 
     @Override
     @GetMapping(value = "/{source}/{pageable}")
-    public Collection<ClientDTO> findByVeterinaryName(@PathVariable(required =true)String source,@PathVariable(required =true) Pageable pageable) throws Exception {        
+    public Collection<ClientDTO> findByVeterinaryName(@PathVariable(required =true)String source,@PathVariable(required =true) PageRequest pageable) throws Exception {        
         
         try {
             return service.findByName(source, pageable); 

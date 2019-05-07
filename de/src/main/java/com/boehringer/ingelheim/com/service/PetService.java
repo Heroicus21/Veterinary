@@ -9,7 +9,7 @@ import com.boehringer.ingelhein.com.dto.ClientDTO;
 import com.boehringer.ingelhein.com.dto.PetDTO;
 import java.util.Collection;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
+
 
 /**
  *
@@ -21,5 +21,5 @@ public interface PetService {
     public Collection<PetDTO> list() throws Exception;    
     public void delete(PetDTO source) throws Exception;
     public Collection<PetDTO> findByClient(ClientDTO source) throws Exception;    
-    public Collection<PetDTO> findByClientName(String source,Pageable pageRequest) throws Exception; 
+    public Collection<PetDTO> findByClientName(String source,PageRequest pageRequest) throws Exception; 
 }
